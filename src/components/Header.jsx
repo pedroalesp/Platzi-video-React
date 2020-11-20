@@ -1,6 +1,10 @@
 /* eslint-disable quotes */
 import React from 'react';
 
+import '../assets/styles/components/Header.scss';
+
+import userIcon from '../assets/static/user-icon.png';
+
 const Header = () => (
   <header className='header'>
     <img
@@ -10,7 +14,7 @@ const Header = () => (
     />
     <div className='header__menu'>
       <div className='header__menu--profile'>
-        <img src='./icons/user-icon.png' alt='User' />
+        <img src={userIcon} alt='User' />
         <p>Perfil</p>
       </div>
       <ul>
