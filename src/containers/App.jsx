@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../assets/styles/App.scss';
 
@@ -8,39 +9,53 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
+import useInitialState from '../hooks/useInitialState';
 
-const App = () => (
-  <div className='App'>
-    <Header />
-    <Search />
-    <Categories title='My List'>
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
+const App = () => {
+  const API = 'http://localhost:3000/initialState';
+  const initialState = useInitialState(API);
 
-    <Categories title='Trends'>
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
+  return (
+    <div className='App'>
+      <Header />
+      <Search />
 
-    <Categories title='Originals'>
-      <Carousel>
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-        <CarouselItem />
-      </Carousel>
-    </Categories>
-    <Footer />
-  </div>
-);
+      {initialState.mylist.length > 0 && (
+        <Categories title='My List'>
+          <Carousel>
+            {initialState.mylist.map((item) => (
+              <CarouselItem key={item.id} {...item} />
+            ))}
+          </Carousel>
+        </Categories>
+      )}
+
+      <Categories title='Trends'>
+        <Carousel>
+          {initialState.trends.map((item) => (
+            <CarouselItem key={item.id} {...item} />
+          ))}
+        </Carousel>
+      </Categories>
+
+      <Categories title='Originals'>
+        <Carousel>
+          {initialState.originals.map((item) => (
+            <CarouselItem key={item.id} {...item} />
+          ))}
+        </Carousel>
+      </Categories>
+      <Footer />
+    </div>
+  );
+};
+
+CarouselItem.propTypes = {
+  cover: PropTypes.string,
+  title: PropTypes.string,
+  year: PropTypes.number,
+  contentRating: PropTypes.string,
+  duration: PropTypes.number,
+};
 
 export default App;

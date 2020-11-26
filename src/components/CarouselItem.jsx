@@ -5,13 +5,9 @@ import '../assets/styles/components/CarouselItem.scss';
 import favIcon from '../assets/static/fav-icon.png';
 import playIcon from '../assets/static/play-icon.png';
 
-const CarouselItem = () => (
+const CarouselItem = ({ cover, title, year, contentRating, duration }) => (
   <div className='carousel-item'>
-    <img
-      className='carousel-item__img'
-      src='https://images.pexels.com/photos/1628235/pexels-photo-1628235.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-      alt='Phone'
-    />
+    <img className='carousel-item__img' src={cover} alt={title} />
     <div className='carousel-item__details'>
       <div>
         <img
@@ -27,8 +23,8 @@ const CarouselItem = () => (
           alt='fav icon'
         />
       </div>
-      <p className='carousel-item__details--title'>Título Descriptivo</p>
-      <p className='carousel-item__details--subtitle'>2019 16+ 114 min</p>
+      <p className='carousel-item__details--title'>{title}</p>
+      <p className='carousel-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>
     </div>
   </div>
 );

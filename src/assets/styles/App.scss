@@ -1,5 +1,8 @@
+@import './Vars.scss';
+@import './Media.scss';
+
 body {
-  font-family: 'Muli', sans-serif;
+  font-family: $theme-font;
   margin: 0;
-  background-image: linear-gradient(109.2deg, #6b34ff 16.5%, #339ff7 81%);
+  background-image: $main-color;
 }
