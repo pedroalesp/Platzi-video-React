@@ -1,4 +1,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Muli:wght@500&display=swap);
 
 $theme-font: 'Muli', sans-serif;
-$main-color: linear-gradient(109.2deg, #6b34ff 16.5%, #339ff7 81%);
+$main-color: linear-gradient(
+  180deg,
+  rgba(2, 0, 36, 1) 20%,
+  rgba(24, 9, 121, 1) 88%,
+  rgba(4, 0, 255, 1) 100%
+);

@@ -11,7 +11,7 @@ import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState';
 
-const App = () => {
+const Home = () => {
   const API = 'http://localhost:3000/initialState';
   const initialState = useInitialState(API);
 
@@ -58,4 +58,4 @@ CarouselItem.propTypes = {
   duration: PropTypes.number,
 };
 
-export default App;
+export default Home;
