@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { setFavorite, deleteFavorite } from '../actions';
 
 const CarouselItem = (props) => {
-  const { id, cover, title, year, contentRating, duration } = props;
+  const { id, cover, title, year, contentRating, duration, isList } = props;
 
   const handleDeleteFavorite = (itemId) => {
     props.deleteFavorite(itemId);
@@ -36,20 +36,24 @@ const CarouselItem = (props) => {
             height='30px'
             alt='Play icon'
           />
-          <img
-            onClick={handleSetfavorite}
-            className='carousel-item__icons'
-            src={favIcon}
-            height='30'
-            alt='fav icon'
-          />
-          <img
-            onClick={() => handleDeleteFavorite(props.id)}
-            className='carousel-item__icons'
-            src={removeIcon}
-            height='30'
-            alt='remove icon'
-          />
+
+          {isList ? (
+            <img
+              onClick={() => handleDeleteFavorite(props.id)}
+              className='carousel-item__icons'
+              src={removeIcon}
+              height='30'
+              alt='remove icon'
+            />
+          ) : (
+            <img
+              onClick={handleSetfavorite}
+              className='carousel-item__icons'
+              src={favIcon}
+              height='30'
+              alt='fav icon'
+            />
+          )}
         </div>
         <p className='carousel-item__details--title'>{title}</p>
         <p className='carousel-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>
