@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../assets/styles/components/CarouselItem.scss';
 
@@ -30,12 +31,14 @@ const CarouselItem = (props) => {
       <img className='carousel-item__img' src={cover} alt={title} />
       <div className='carousel-item__details'>
         <div>
-          <img
-            className='carousel-item__icons'
-            src={playIcon}
-            height='30px'
-            alt='Play icon'
-          />
+          <Link to={`/player/${id}`}>
+            <img
+              className='carousel-item__icons'
+              src={playIcon}
+              height='30px'
+              alt='Play icon'
+            />
+          </Link>
 
           {isList ? (
             <img
