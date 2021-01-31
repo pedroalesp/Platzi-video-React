@@ -7,36 +7,52 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 
-const Home = ({ myList, trends, originals }) => {
+const Home = ({ myList, trends, originals, searchResults }) => {
   return (
     <>
       <Search />
 
-      {myList.length > 0 && (
-        <Categories title='My List'>
-          <Carousel>
-            {myList.map((item) => (
-              <CarouselItem key={item.id} {...item} isList />
-            ))}
-          </Carousel>
-        </Categories>
+      {searchResults.length === 0 ? (
+        <div>
+          {myList.length > 0 && (
+            <Categories title='My List'>
+              <Carousel>
+                {myList.map((item) => (
+                  <CarouselItem key={item.id} {...item} isList />
+                ))}
+              </Carousel>
+            </Categories>
+          )}
+
+          <Categories title='Trends'>
+            <Carousel>
+              {trends.map((item) => (
+                <CarouselItem key={item.id} {...item} />
+              ))}
+            </Carousel>
+          </Categories>
+
+          <Categories title='Originals'>
+            <Carousel>
+              {originals.map((item) => (
+                <CarouselItem key={item.id} {...item} />
+              ))}
+            </Carousel>
+          </Categories>
+        </div>
+      ) : (
+        <div>
+          {searchResults.length > 0 && (
+            <Categories title='Results'>
+              <Carousel>
+                {searchResults.map((item) => (
+                  <CarouselItem key={item.id} {...item} />
+                ))}
+              </Carousel>
+            </Categories>
+          )}
+        </div>
       )}
-
-      <Categories title='Trends'>
-        <Carousel>
-          {trends.map((item) => (
-            <CarouselItem key={item.id} {...item} />
-          ))}
-        </Carousel>
-      </Categories>
-
-      <Categories title='Originals'>
-        <Carousel>
-          {originals.map((item) => (
-            <CarouselItem key={item.id} {...item} />
-          ))}
-        </Carousel>
-      </Categories>
     </>
   );
 };
@@ -51,6 +67,7 @@ CarouselItem.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    searchResults: state.searchResults,
     myList: state.myList,
     trends: state.trends,
     originals: state.originals,
