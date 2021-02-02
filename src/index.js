@@ -10,7 +10,7 @@ import App from './routes/App';
 const initialState = {
   user: {},
   playing: {},
-  searchResults: [],
+  searchResults: { results: [], exist: false },
   myList: [],
   trends: [
     {

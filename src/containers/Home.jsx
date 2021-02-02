@@ -12,7 +12,21 @@ const Home = ({ myList, trends, originals, searchResults }) => {
     <>
       <Search />
 
-      {searchResults.length === 0 ? (
+      {searchResults.exist ? (
+        <div>
+          {searchResults.results.length > 0 ? (
+            <Categories title='Results'>
+              <Carousel>
+                {searchResults.results.map((item) => (
+                  <CarouselItem key={item.id} {...item} />
+                ))}
+              </Carousel>
+            </Categories>
+          ) : (
+            <p>not found :/</p>
+          )}
+        </div>
+      ) : (
         <div>
           {myList.length > 0 && (
             <Categories title='My List'>
@@ -39,18 +53,6 @@ const Home = ({ myList, trends, originals, searchResults }) => {
               ))}
             </Carousel>
           </Categories>
-        </div>
-      ) : (
-        <div>
-          {searchResults.length > 0 && (
-            <Categories title='Results'>
-              <Carousel>
-                {searchResults.map((item) => (
-                  <CarouselItem key={item.id} {...item} />
-                ))}
-              </Carousel>
-            </Categories>
-          )}
         </div>
       )}
     </>
